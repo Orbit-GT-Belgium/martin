@@ -1,0 +1,1 @@
+./target/release/martin postgres://admin:WVU%26szK%267rOv0%5E%234@localhost:5433/geometries --danger-accept-invalid-certs --watch

@@ -21,6 +21,7 @@ pub struct TableSource {
     pub clip_geom: Option<bool>,
     pub geometry_type: Option<String>,
     pub properties: HashMap<String, String>,
+    pub bounds: Vec<f32>
 }
 
 pub type TableSources = HashMap<String, Box<TableSource>>;
@@ -35,6 +36,7 @@ impl Source for TableSource {
 
         tilejson_builder.scheme("xyz");
         tilejson_builder.name(&self.id);
+        tilejson_builder.bounds(self.bounds.to_vec());
 
         Ok(tilejson_builder.finalize())
     }
@@ -113,6 +115,22 @@ pub fn get_table_sources(conn: &mut Connection) -> Result<TableSources, io::Erro
         let table: String = row.get("f_table_name");
         let id = format!("{}.{}", schema, table);
 
+        let query = format!("SELECT ST_Extent(geom)::TEXT as bbox from  {}", id);
+        
+        let rows2=conn.query(&*query, &[]).map_err(|err| io::Error::new(io::ErrorKind::Other, err.to_string()))?;
+        let mut bounds: Vec<f32> = Vec::new();
+        for row2 in &rows2 {
+            let bbox_string:String = row2.get("bbox");
+            let new_string:String = bbox_string.replace("(", "").replace(")", "").replace("BOX", "").replace(" ", ",");
+
+            let bounds_string:Vec<String>  =new_string.split(',').map(|s| s.to_string()).collect();
+
+            bounds.push(bounds_string[0].parse::<f32>().unwrap());
+            bounds.push(bounds_string[1].parse::<f32>().unwrap());
+            bounds.push(bounds_string[2].parse::<f32>().unwrap());
+            bounds.push(bounds_string[3].parse::<f32>().unwrap()); 
+        }
+  
         let geometry_column: String = row.get("f_geometry_column");
         let srid: i32 = row.get("srid");
 
@@ -137,6 +155,7 @@ pub fn get_table_sources(conn: &mut Connection) -> Result<TableSources, io::Erro
             clip_geom: Some(DEFAULT_CLIP_GEOM),
             geometry_type: row.get("type"),
             properties,
+            bounds
         };
 
         sources.insert(id, Box::new(source));

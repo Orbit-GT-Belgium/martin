@@ -1198,7 +1198,7 @@ dependencies = [
  "serde_derive 1.0.115 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.57 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_yaml 0.8.13 (registry+https://github.com/rust-lang/crates.io-index)",
- "tilejson 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "tilejson 0.2.2-alpha.0 (git+https://github.com/Orbit-GT-Belgium/tilejson)",
 ]
 
 [[package]]
@@ -2071,8 +2071,8 @@ dependencies = [
 
 [[package]]
 name = "tilejson"
-version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
+version = "0.2.2-alpha.0"
+source = "git+https://github.com/Orbit-GT-Belgium/tilejson#ea5b6975b5189b3f581704ce5cc395659255c81d"
 dependencies = [
  "serde 1.0.115 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.57 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -2676,7 +2676,7 @@ dependencies = [
 "checksum textwrap 0.11.0 (registry+https://github.com/rust-lang/crates.io-index)" = "d326610f408c7a4eb6f51c37c330e496b08506c9457c9d34287ecc38809fb060"
 "checksum thread_local 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "d40c6d1b69745a6ec6fb1ca717914848da4b44ae29d9b3080cbee91d72a69b14"
 "checksum threadpool 1.8.1 (registry+https://github.com/rust-lang/crates.io-index)" = "d050e60b33d41c19108b32cea32164033a9013fe3b46cbd4457559bfbf77afaa"
-"checksum tilejson 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "e0bc3fb4db5f01577492f0ac951c0f4510ccee4c01522e2ee56aa020c0a174da"
+"checksum tilejson 0.2.2-alpha.0 (git+https://github.com/Orbit-GT-Belgium/tilejson)" = "<none>"
 "checksum time 0.1.43 (registry+https://github.com/rust-lang/crates.io-index)" = "ca8a50ef2360fbd1eeb0ecd46795a87a19024eb4b53c5dc916ca1fd95fe62438"
 "checksum time 0.2.16 (registry+https://github.com/rust-lang/crates.io-index)" = "3a51cadc5b1eec673a685ff7c33192ff7b7603d0b75446fb354939ee615acb15"
 "checksum time-macros 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "9ae9b6e9f095bc105e183e3cd493d72579be3181ad4004fceb01adbe9eecab2d"
