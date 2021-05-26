@@ -129,6 +129,7 @@ pub fn get_table_sources(conn: &mut Connection) -> Result<TableSources, io::Erro
             bounds.push(bounds_string[1].parse::<f32>().unwrap());
             bounds.push(bounds_string[2].parse::<f32>().unwrap());
             bounds.push(bounds_string[3].parse::<f32>().unwrap()); 
+            break;
         }
   
         let geometry_column: String = row.get("f_geometry_column");
